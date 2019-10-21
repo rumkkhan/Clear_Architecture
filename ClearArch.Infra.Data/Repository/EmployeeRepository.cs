@@ -13,7 +13,15 @@ namespace ClearArch.Infra.Data.Repository
         public EmployeeRepository(EmployeeDBContext etx)
         {
             _etx = etx;
+
         }
+
+        public void Add(Employee employee)
+        {
+            _etx.Employees.Add(employee);
+            _etx.SaveChanges();
+        }
+
         public IEnumerable<Employee> GetEmployees()
         {
            return  _etx.Employees;

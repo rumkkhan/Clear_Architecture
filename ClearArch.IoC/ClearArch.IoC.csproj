@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
@@ -9,6 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\CleanArch.Infra.Bus\CleanArch.Infra.Bus.csproj" />
     <ProjectReference Include="..\ClearArch.Application\ClearArch.Application.csproj" />
     <ProjectReference Include="..\ClearArch.Domain\ClearArch.Domain.csproj" />
     <ProjectReference Include="..\ClearArch.Infra.Data\ClearArch.Infra.Data.csproj" />

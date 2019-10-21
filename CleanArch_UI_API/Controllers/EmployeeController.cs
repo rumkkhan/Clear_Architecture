@@ -2,7 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using CleanArch.Domain.Core.Bus;
 using ClearArch.Application.Interfaces;
+using ClearArch.Application.ViewModals;
+using ClearArch.Domain.commands;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CleanArch_UI_API.Controllers
@@ -11,9 +14,11 @@ namespace CleanArch_UI_API.Controllers
     public class EmployeeController : Controller
     {
         private IEmployeeService _employeeService;
-        public EmployeeController(IEmployeeService employeeService)
+        private IMediatorHandler _bus;
+        public EmployeeController(IEmployeeService employeeService, IMediatorHandler bus)
         {
             _employeeService = employeeService;
+            _bus = bus;
         }
 
         // GET api/values
@@ -33,8 +38,17 @@ namespace CleanArch_UI_API.Controllers
 
         // POST api/values
         [HttpPost]
-        public void Post([FromBody]string value)
+        public IActionResult Post([FromBody]EmployeeViewModal employeeViewModal)
         {
+
+            _employeeService.Create(employeeViewModal);
+            return Ok(employeeViewModal);
+            //var createEmployeeCommand = new CreateEmployeeCommand(
+            //                employeeViewModal.FirstName,
+            //                employeeViewModal.LastName,
+            //                employeeViewModal.Designation
+            //    ) ;
+            //_bus.SendCommand(createEmployeeCommand);
         }
 
         // PUT api/values/5

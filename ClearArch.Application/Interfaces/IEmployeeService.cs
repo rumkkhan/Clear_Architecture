@@ -8,5 +8,7 @@ namespace ClearArch.Application.Interfaces
     public interface IEmployeeService
     {
         EmployeeViewModal GetEmployees();
+
+        void Create(EmployeeViewModal employeeViewModal);
     }
 }
